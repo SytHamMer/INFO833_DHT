@@ -30,6 +30,15 @@ public class Node {
         return loc;
     }
 
+    public Node getById(int id){
+        return this;
+    }
+
+    public Node getByLoc(int loc){
+        return this;
+    }
+
+
     // for now easy version always go up but could be improved by taking the shortest way
     public void deliver(Message message){
         switch (message.getType()){
