@@ -8,10 +8,14 @@ java:S1319"fThe type of "neighbors" should be an interface such as "Map" rathe
 ~
 java:S1319"aThe type of "data" should be an interface such as "Map" rather than the implementation "HashMap".(§Ä†ø8ÅæÊ·Ú1
 h
-java:S1301#"KReplace this "switch" statement by "if" statements to increase readability.(ÚœÂ8ÆæÊ·Ú1
+java:S1301,"KReplace this "switch" statement by "if" statements to increase readability.(ÚœÂ8ÆæÊ·Ú1
 m
-java:S1301%"KReplace this "switch" statement by "if" statements to increase readability.(­×à˜üÿÿÿÿ8ÇæÊ·Ú1
-L	java:S106'"+Replace this use of System.out by a logger.(í˜Ÿúÿÿÿÿ8‘ÀË·Ú1
+java:S1301."KReplace this "switch" statement by "if" statements to increase readability.(­×à˜üÿÿÿÿ8ÇæÊ·Ú1
+K
+java:S1172!")Remove this unused method parameter "id".(‘ªì‰üÿÿÿÿ8Ë•ı¸Ú1
+L
+java:S1172%"*Remove this unused method parameter "loc".(Şïéáøÿÿÿÿ8Ì•ı¸Ú1
+L	java:S1060"+Replace this use of System.out by a logger.(í˜Ÿúÿÿÿÿ8‘ÀË·Ú1
 O
 java:S1068"-Remove this unused "neighbors" private field.(¿òÈ¶üÿÿÿÿ8˜çÊ·Ú1
 E
