@@ -1,16 +1,19 @@
 public class Evenement {
-    private int execute_time;
+    private int executeTime;
     private int idNode;
     private Message message;
 
-    public Evenement(int execute_time, int idNode, Message message) {
-        this.execute_time = execute_time;
+    private DHT dht;
+
+    public Evenement(int executeTime, int idNode, Message message, DHT dht) {
+        this.executeTime = executeTime;
         this.idNode = idNode;
         this.message = message;
+        this.dht =dht;
     }
 
-    public int getExecute_time() {
-        return execute_time;
+    public int getExecuteTime() {
+        return executeTime;
     }
 
     public int getIdNode() {
@@ -19,6 +22,12 @@ public class Evenement {
 
     public Message getMessage() {
         return message;
+    }
+
+    public void execute(){
+        Node node = dht.getNodeById(idNode);
+        node.deliver(message);
+
     }
 
 }

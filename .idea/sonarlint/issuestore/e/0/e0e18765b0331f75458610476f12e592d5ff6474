@@ -1,22 +1,32 @@
 
-u
-java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(‡¿§B8¿æÊ·Ú1
 v
-java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Äô—8ÀæÊ·Ú1
-ƒ
-java:S1319"fThe type of "neighbors" should be an interface such as "Map" rather than the implementation "HashMap".(·úæÅ8ÄæÊ·Ú1
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").( œ›¾8™ˆŸÃÚ1
+v
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(¦·ÓÖ8™ˆŸÃÚ1
+v
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Äô—8™ˆŸÃÚ1
 ~
-java:S1319"aThe type of "data" should be an interface such as "Map" rather than the implementation "HashMap".(§Ä†ø8ÅæÊ·Ú1
-h
-java:S1301,"KReplace this "switch" statement by "if" statements to increase readability.(ÚœÂ8ÆæÊ·Ú1
-m
-java:S1301."KReplace this "switch" statement by "if" statements to increase readability.(­×à˜üÿÿÿÿ8ÇæÊ·Ú1
+java:S1319%"aThe type of "data" should be an interface such as "Map" rather than the implementation "HashMap".(§Ä†ø8šˆŸÃÚ1
+’
+java:S1319)"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(­Æ×ƒşÿÿÿÿ8šˆŸÃÚ1
+
+java:S1319-"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(œ›Úø8šˆŸÃÚ1
+‡
+java:S1319u"eThe type of "evnts" should be an interface such as "List" rather than the implementation "ArrayList".(¿êÄøÿÿÿÿ8šˆŸÃÚ1
 K
-java:S1172!")Remove this unused method parameter "id".(‘ªì‰üÿÿÿÿ8Ë•ı¸Ú1
+java:S11729")Remove this unused method parameter "id".(‘ªì‰üÿÿÿÿ8¤ˆŸÃÚ1
 L
-java:S1172%"*Remove this unused method parameter "loc".(Şïéáøÿÿÿÿ8Ì•ı¸Ú1
-L	java:S1060"+Replace this use of System.out by a logger.(í˜Ÿúÿÿÿÿ8‘ÀË·Ú1
-O
-java:S1068"-Remove this unused "neighbors" private field.(¿òÈ¶üÿÿÿÿ8˜çÊ·Ú1
+java:S1172="*Remove this unused method parameter "loc".(Şïéáøÿÿÿÿ8¤ˆŸÃÚ1
+h	java:S128E"LEnd this switch case with an unconditional break, return or throw statement.(–¯ëÂ8¥ˆŸÃÚ1
+L	java:S106H"+Replace this use of System.out by a logger.(í˜Ÿúÿÿÿÿ8¥ˆŸÃÚ1
+L	java:S106Q"+Replace this use of System.out by a logger.(®æ…êùÿÿÿÿ8¦ˆŸÃÚ1
+G	java:S106U"+Replace this use of System.out by a logger.(¦Ö°ª8¦ˆŸÃÚ1
+L	java:S106X"+Replace this use of System.out by a logger.(„ñêÍøÿÿÿÿ8¦ˆŸÃÚ1
+L	java:S106`"+Replace this use of System.out by a logger.(Éõ²ìøÿÿÿÿ8§ˆŸÃÚ1
+L	java:S106c"+Replace this use of System.out by a logger.(±ŠÜÄüÿÿÿÿ8§ˆŸÃÚ1
+L	java:S106f"+Replace this use of System.out by a logger.(èëş´ùÿÿÿÿ8§ˆŸÃÚ1
+G	java:S106l"+Replace this use of System.out by a logger.(öØÈ¢8§ˆŸÃÚ1
+@
+java:S2119v"Save and re-use this "Random".(šŸ«íøÿÿÿÿ8©ˆŸÃÚ1
 E
-java:S1068"(Remove this unused "data" private field.(ÑËËÈ8˜çÊ·Ú1
+java:S1068"(Remove this unused "data" private field.(ÑËËÈ8©ˆŸÃÚ1

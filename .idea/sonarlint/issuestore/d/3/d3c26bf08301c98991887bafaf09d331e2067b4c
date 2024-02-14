@@ -1,19 +1,18 @@
 
 v
-java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(‰È¢ø8«î˜¹Ú1
-r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŠÀøÿÿÿÿ8¬î˜¹Ú1
-r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•‹†ëúÿÿÿÿ8¬î˜¹Ú1
-i	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(·š†‡8­î˜¹Ú1
+java:S2293
+"YReplace the type specification in this constructor call with the diamond operator ("<>").(‰È¢ø8¹êÚÀÚ1
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŠÀøÿÿÿÿ8¹êÚÀÚ1
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•‹†ëúÿÿÿÿ8¹êÚÀÚ1
+i	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(·š†‡8¹êÚÀÚ1
 i
-java:S1223"LRename this method to prevent any misunderstanding or make it a constructor.(Çµí‘8­î˜¹Ú1
-T
-java:S1854
-"7Remove this useless assignment to local variable "dht".(×Ê¡8²î˜¹Ú1
-V
-java:S1854"9Remove this useless assignment to local variable "evnts".(‰È¢ø8²î˜¹Ú1
-G
-java:S1481"*Remove this unused "evnts" local variable.(‰È¢ø8·î˜¹Ú1
-E
-java:S1481
-"(Remove this unused "dht" local variable.(×Ê¡8·î˜¹Ú1
-L	java:S106"+Replace this use of System.out by a logger.(®ÃÏÙøÿÿÿÿ8æ–™¹Ú1
+java:S1223"LRename this method to prevent any misunderstanding or make it a constructor.(Çµí‘8ºêÚÀÚ1
+Y
+java:S1854"7Remove this useless assignment to local variable "dht".(–´Æ€øÿÿÿÿ8¼êÚÀÚ1
+Z
+java:S1854	"8Remove this useless assignment to local variable "rand".(šŸ«íøÿÿÿÿ8¼êÚÀÚ1
+K
+java:S1481	")Remove this unused "rand" local variable.(šŸ«íøÿÿÿÿ8¾êÚÀÚ1
+J
+java:S1481"(Remove this unused "dht" local variable.(–´Æ€øÿÿÿÿ8¿êÚÀÚ1
+L	java:S106"+Replace this use of System.out by a logger.(®ÃÏÙøÿÿÿÿ8¿êÚÀÚ1
