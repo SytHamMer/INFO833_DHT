@@ -30,5 +30,23 @@ public class Node {
         return loc;
     }
 
+    // for now easy version always go up but could be improved by taking the shortest way
+    public void deliver(Message message){
+        switch (message.getType()){
+            case "join":
+                switch (message.getSousType()){
+                    case "insert":
+                        System.out.println("join_insert");
+                }
+
+
+
+
+        }
+
+    }
+
+
+
 
 }

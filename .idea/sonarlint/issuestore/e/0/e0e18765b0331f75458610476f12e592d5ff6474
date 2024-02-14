@@ -1,0 +1,18 @@
+
+u
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(‡¿§B8¿æÊ·Ú1
+v
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Äô—8ÀæÊ·Ú1
+ƒ
+java:S1319"fThe type of "neighbors" should be an interface such as "Map" rather than the implementation "HashMap".(·úæÅ8ÄæÊ·Ú1
+~
+java:S1319"aThe type of "data" should be an interface such as "Map" rather than the implementation "HashMap".(§Ä†ø8ÅæÊ·Ú1
+h
+java:S1301#"KReplace this "switch" statement by "if" statements to increase readability.(ÚœÂ8ÆæÊ·Ú1
+m
+java:S1301%"KReplace this "switch" statement by "if" statements to increase readability.(­×à˜üÿÿÿÿ8ÇæÊ·Ú1
+L	java:S106'"+Replace this use of System.out by a logger.(í˜Ÿúÿÿÿÿ8‘ÀË·Ú1
+O
+java:S1068"-Remove this unused "neighbors" private field.(¿òÈ¶üÿÿÿÿ8˜çÊ·Ú1
+E
+java:S1068"(Remove this unused "data" private field.(ÑËËÈ8˜çÊ·Ú1
