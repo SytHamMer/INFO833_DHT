@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 import java.util.Random;
 
 public class main {
@@ -7,7 +8,7 @@ public class main {
         int current_time = 0;
         int end_time = 1000;
         Random rand = new Random();
-        ArrayList<Evenement> evnts = new ArrayList<Evenement>();
+        PriorityQueue<Evenement> evnts = new PriorityQueue<>();
         DHT dht = new DHT(current_time);
 
 
@@ -15,8 +16,7 @@ public class main {
 
         while (current_time<end_time || evnts.size()>0){
             System.out.println("ououou");
-            Evenement evnt = evnts.get(0);
-            evnts.remove(0);
+            Evenement evnt = evnts.poll();
             current_time += evnt.getExecuteTime();
 
 

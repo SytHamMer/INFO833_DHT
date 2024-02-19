@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.PriorityQueue;
 import java.util.Random;
 
 
@@ -72,7 +73,11 @@ public class Node {
                         System.out.println("join_insert");
                         Node node = this.getById( this.getSupNeighbor().get(0));
                         //Send ack to the old leftNeighbor
+                        //Send method needs DHT and events list ? Normal ? Not opti ?
+                        Message ack = new Message("join", "ack", this.getInfNeighbor().get(0), this.getInfNeighbor().get(1), null);
 
+
+                        //change the infNeighbor of the receiver node
                         node.setInfNeighbor(message.getSenders().get(0), message.getSenders().get(1));
 
 
@@ -90,22 +95,22 @@ public class Node {
 
                         }
                 //POURQUOI L'INDENTATION EST CASSEE ???
-                case "leave":
-                    switch (message.getSousType()){
-                        case "insert":
-                            System.out.println("leave_insert");
-                            break;
-                        case "request":
-                            System.out.println("leave_request");
-                            break;
-                        default:
-                            System.out.println("leave_error");
-                    }
-                    break;
+                    case "leave":
+                        switch (message.getSousType()){
+                            case "insert":
+                                System.out.println("leave_insert");
+                                break;
+                            case "request":
+                                System.out.println("leave_request");
+                                break;
+                            default:
+                                System.out.println("leave_error");
+                        }
+                        break;
 
 
-            default:
-                System.out.println("error");
+                default:
+                    System.out.println("error");
 
 
 
@@ -114,7 +119,7 @@ public class Node {
     }
 
     //génére l'event + calcul latence
-    public void send(Message message, int id, ArrayList<Evenement> evnts,DHT dht) {
+    public void send(Message message, int id, PriorityQueue<Evenement> evnts, DHT dht) {
         Random rand = new Random();
         //Latence aléatoire entre 10 et 50 ms amélioration possible (vrai calcul et non random)
         int latence = rand.nextInt(50 - 10 + 1) + 10;
