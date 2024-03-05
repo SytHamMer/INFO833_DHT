@@ -5,6 +5,8 @@ import java.util.Random;
 
 
 public class Node {
+
+
     private int id;
     private int loc;
     //id,loc
@@ -14,13 +16,14 @@ public class Node {
 
     private HashMap<Integer, String> data;
 
+    public DHT dht;
 
-    public Node(int id, int loc) {
+    public Node(int id, int loc, DHT dht) {
         this.id = id;
         this.loc = loc;
         this.supNeighbor = new ArrayList<Integer>();
         this.infNeighbor = new ArrayList<Integer>();
-
+        this.dht =  dht;
         this.data = new HashMap<Integer, String>();
     }
 
@@ -74,9 +77,9 @@ public class Node {
                         Node node = this.getById( this.getSupNeighbor().get(0));
                         //Send ack to the old leftNeighbor
                         //Send method needs DHT and events list ? Normal ? Not opti ?
-                        Message ack = new Message("join", "ack", this.getInfNeighbor().get(0), this.getInfNeighbor().get(1), null);
-
-
+                        Message ack = new Message("join", "ack", this.getInfNeighbor().get(0), null);
+                        //Need to know how to access to events
+                        //this.send(ack, this.getSupNeighbor().get(0), events, dht);
                         //change the infNeighbor of the receiver node
                         node.setInfNeighbor(message.getSenders().get(0), message.getSenders().get(1));
 
@@ -93,16 +96,19 @@ public class Node {
                         System.out.println("join_error");
                         break;
 
-                        }
-                //POURQUOI L'INDENTATION EST CASSEE ???
-                    case "leave":
-                        switch (message.getSousType()){
-                            case "insert":
-                                System.out.println("leave_insert");
-                                break;
-                            case "request":
-                                System.out.println("leave_request");
-                                break;
+                }
+            case "leave":
+                switch (message.getSousType()){
+                    case "insert":
+                        System.out.println("leave_insert");
+                        break;
+
+                    //POURQUOI L'INDENTATION EST CASSEE ???
+
+                    case "request":
+                            System.out.println("leave_request");
+                            break;
+
                             default:
                                 System.out.println("leave_error");
                         }
@@ -119,12 +125,12 @@ public class Node {
     }
 
     //génére l'event + calcul latence
-    public void send(Message message, int id, PriorityQueue<Evenement> evnts, DHT dht) {
+    public void send(Message message, int id, PriorityQueue<Evenement> events, DHT dht) {
         Random rand = new Random();
         //Latence aléatoire entre 10 et 50 ms amélioration possible (vrai calcul et non random)
         int latence = rand.nextInt(50 - 10 + 1) + 10;
         int executeTime = latence + dht.getCurrentTime();
-        evnts.add(new Evenement(executeTime, id, message,dht));
+        events.add(new Evenement(executeTime, id, message,dht));
 
 
     }

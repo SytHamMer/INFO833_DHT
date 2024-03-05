@@ -1,7 +1,7 @@
 
 ‰
-java:S1319"gThe type of "senders" should be an interface such as "List" rather than the implementation "ArrayList".(¾Éğôıÿÿÿÿ8ë‰ÃÚ1
+java:S1319"gThe type of "senders" should be an interface such as "List" rather than the implementation "ArrayList".(¾Éğôıÿÿÿÿ8ë‰ÃÚ1
 
-java:S1319+"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(±’„¿8ì•’ÃÚ1
+java:S1319*"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(±’„¿8ì•’ÃÚ1
 P
 java:S1128".Remove this unused import 'java.util.HashMap'.(™˜”€ùÿÿÿÿ8ò•’ÃÚ1

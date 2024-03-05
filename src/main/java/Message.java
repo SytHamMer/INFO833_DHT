@@ -9,12 +9,11 @@ public class Message {
 
     private Integer data; //maybe change the type
     //first one
-    public Message(String type, String sousType, Integer idSender,Integer locSender, Integer data) {
+    public Message(String type, String sousType, Integer idSender, Integer data) {
         this.type = type;
         this.sousType = sousType;
         this.senders = new ArrayList<>();
         this.senders.add(idSender);
-        this.senders.add(locSender);
         this.data = data;
     }
 
