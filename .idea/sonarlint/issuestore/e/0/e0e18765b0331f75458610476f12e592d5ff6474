@@ -17,21 +17,16 @@ K
 java:S1172=")Remove this unused method parameter "id".(‘ªì‰üÿÿÿÿ8·€óöà1
 L
 java:S1172A"*Remove this unused method parameter "loc".(Şïéáøÿÿÿÿ8·€óöà1
-T
-java:S1854P"7Remove this useless assignment to local variable "ack".(ÎçÎ¤8š¶õöà1
 h	java:S128I"LEnd this switch case with an unconditional break, return or throw statement.(–¯ëÂ8¸€óöà1
 L	java:S106L"+Replace this use of System.out by a logger.(í˜Ÿúÿÿÿÿ8¹€óöà1
-E
-java:S1481P"(Remove this unused "ack" local variable.(ÎçÎ¤8œ¶õöà1
-]	java:S125R"<This block of commented-out lines of code should be removed.(ˆğ–§úÿÿÿÿ8¶õöà1
-L	java:S106Y"+Replace this use of System.out by a logger.(®æ…êùÿÿÿÿ8¼€óöà1
-G	java:S106]"+Replace this use of System.out by a logger.(¦Ö°ª8¼€óöà1
-L	java:S106`"+Replace this use of System.out by a logger.(„ñêÍøÿÿÿÿ8¼€óöà1
-L	java:S106g"+Replace this use of System.out by a logger.(Éõ²ìøÿÿÿÿ8½€óöà1
-L	java:S106m"+Replace this use of System.out by a logger.(±ŠÜÄüÿÿÿÿ8½€óöà1
-L	java:S106q"+Replace this use of System.out by a logger.(èëş´ùÿÿÿÿ8½€óöà1
-G	java:S106w"+Replace this use of System.out by a logger.(öØÈ¢8¾€óöà1
+L	java:S106X"+Replace this use of System.out by a logger.(®æ…êùÿÿÿÿ8¼€óöà1
+G	java:S106^"+Replace this use of System.out by a logger.(¦Ö°ª8¼€óöà1
+L	java:S106a"+Replace this use of System.out by a logger.(„ñêÍøÿÿÿÿ8¼€óöà1
+F	java:S106h"+Replace this use of System.out by a logger.(çÕ²8½€óöà1
+G	java:S106t"+Replace this use of System.out by a logger.(ûÂƒŒ8½€óöà1
+L	java:S106z"+Replace this use of System.out by a logger.(èëş´ùÿÿÿÿ8½€óöà1
+H	java:S106‚"+Replace this use of System.out by a logger.(öØÈ¢8¾€óöà1
 A
-java:S2119"Save and re-use this "Random".(šŸ«íøÿÿÿÿ8À€óöà1
+java:S2119Œ"Save and re-use this "Random".(šŸ«íøÿÿÿÿ8À€óöà1
 E
 java:S1068"(Remove this unused "data" private field.(ÑËËÈ8Á€óöà1

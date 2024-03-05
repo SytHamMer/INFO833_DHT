@@ -76,10 +76,9 @@ public class Node {
                         System.out.println("join_insert");
                         Node node = this.getById( this.getSupNeighbor().get(0));
                         //Send ack to the old leftNeighbor
-                        //Send method needs DHT and events list ? Normal ? Not opti ?
                         Message ack = new Message("join", "ack", this.getInfNeighbor().get(0), null);
                         //Need to know how to access to events
-                        //this.send(ack, this.getSupNeighbor().get(0), events, dht);
+                        this.send(ack, this.getSupNeighbor().get(0), dht.getEvents(), dht);
                         //change the infNeighbor of the receiver node
                         node.setInfNeighbor(message.getSenders().get(0), message.getSenders().get(1));
 
@@ -87,6 +86,8 @@ public class Node {
                         break;
                     case "request":
                         System.out.println("join_request");
+
+
 
                         break;
                     case "ack":
@@ -99,19 +100,29 @@ public class Node {
                 }
             case "leave":
                 switch (message.getSousType()){
-                    case "insert":
-                        System.out.println("leave_insert");
+                    case "exit":
+                        System.out.println("leave_exit");
+                        //change my neighbor with the data of the message
+
+
+
+                        //Send ack to new neighbor
+
+
                         break;
 
-                    //POURQUOI L'INDENTATION EST CASSEE ???
 
-                    case "request":
-                            System.out.println("leave_request");
+                    case "ack":
+                            System.out.println("leave_ack");
+
+                            //change my neighbor with the node of the message
                             break;
 
-                            default:
-                                System.out.println("leave_error");
+                    default:
+                        System.out.println("leave_error");
+                        break;
                         }
+
                         break;
 
 
