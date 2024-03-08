@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1648ec8f-0699-4860-89c7-9520ef74ed0e" name="Changes" comment="[MERGE CONFLICT]">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/0/e0e18765b0331f75458610476f12e592d5ff6474" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/0/e0e18765b0331f75458610476f12e592d5ff6474" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DHT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DHT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Evenement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Evenement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Node.java" afterDir="false" />
+    <list default="true" id="1648ec8f-0699-4860-89c7-9520ef74ed0e" name="Changes" comment="[CLEAN VERSION V1] with One insert inside a dht of 3 nodes">
       <change beforePath="$PROJECT_DIR$/src/main/java/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -141,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709891231900</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="[CLEAN VERSION V1] with One insert inside a dht of 3 nodes">
+      <created>1709894958545</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1709894958545</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -166,6 +167,7 @@
     <MESSAGE value="[EDIT]: DHT structure and Node structure" />
     <MESSAGE value="[COMMENT]: some infos" />
     <MESSAGE value="[MERGE CONFLICT]" />
-    <option name="LAST_COMMIT_MESSAGE" value="[MERGE CONFLICT]" />
+    <MESSAGE value="[CLEAN VERSION V1] with One insert inside a dht of 3 nodes" />
+    <option name="LAST_COMMIT_MESSAGE" value="[CLEAN VERSION V1] with One insert inside a dht of 3 nodes" />
   </component>
 </project>

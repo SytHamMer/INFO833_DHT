@@ -50,20 +50,26 @@ public class main {
 
         //Main loop
         int cpt = 0;
+
+
+        System.out.println("Evolution:");
+        System.out.println("{'timestamp','idReceiver','message'}");
         while (dht.getCurrentTime()<end_time && dht.getEvents().size()>0){
-            System.out.println("Event : " + cpt);
-            System.out.println("Current time : " + dht.getCurrentTime());
             cpt++;
-            System.out.println(events.size());
             Evenement event = dht.getEvents().poll();
             event.execute();
+            int time = dht.getCurrentTime();
+            int idReceiver = event.getIdReceiver();
+            String message = event.getMessage().getType() + "_"+  event.getMessage().getSousType() + " send by " + event.getMessage().getSenders().get(0) + " contenu : " + event.getMessage().getData();
+            System.out.println("{" + time + "," + idReceiver + "," + message + "}");
             dht.setCurrentTime(event.getExecuteTime());
-
 
         }
 
 
         //Check
+
+        System.out.println("Final state:");
         for (Node node : dht.getNodes()){
             System.out.println("Node " + node.getLoc() + " has for inf neighbor " + node.getInfNeighbor().get(1) + " and for sup neighbor " + node.getSupNeighbor().get(1));
         }

@@ -75,20 +75,14 @@ public class Node {
 
         if (message.getType() == "join"){
             Node newNode = dht.getNodeById(message.getSenders().get(0));
-            System.out.println(newNode);
-            System.out.println("senders: " + message.getSenders().get(0));
-            System.out.println("Le node " + this.loc + " a recu un message de " + newNode.getLoc() + " de type " + message.getType() + " et de sous type " + message.getSousType());
-            System.out.println("Le contenu est " + message.getData());
             switch (message.getSousType()){
                 case "insert":
                     this.joinInsert(message);
                     break;
                 case "request":
-                    System.out.println("join_request");
                     this.joinRequest(newNode,message);
                     break;
                 case "ack":
-                    System.out.println("join_ack");
                     this.joinAck(newNode,message);
                     break;
                 default:
@@ -101,12 +95,10 @@ public class Node {
         else if (message.getType() == "leave"){
             switch (message.getSousType()){
                 case "exit":
-                    System.out.println("leave_exit");
                     //change my neighbor with the data of the message
                     //Send ack to new neighbor
                     break;
                 case "ack":
-                    System.out.println("leave_ack");
                     //change my neighbor with the node of the message
                     break;
                 default:
@@ -137,10 +129,8 @@ public class Node {
 
         if (message.getData().containsKey("insertIdNode")){
             //get the node to insert
-            System.out.println("Id du node a inserer : " + message.getData().get("insertIdNode"));
-            System.out.println("Ce meme id sous forme d'entier : " + Integer.parseInt(message.getData().get("insertIdNode")));
+
             Node newNode = dht.getNodeById(Integer.parseInt(message.getData().get("insertIdNode")));
-            System.out.println("join_insert");
             //Send ack to the new infNeighbor
             HashMap<String,String> mData = new HashMap<String,String>();
             mData.put("join_ack","sup");
@@ -158,19 +148,16 @@ public class Node {
 
     //Update our neighbor as he updated his neighbor
     public void joinAck(Node newNode,Message message){
-        System.out.println("join_ack");
         //change the neighbor of the receiver node (sup or inf depending on the message)
 
         //check the data of the message
         if (message.getData().containsKey("join_ack")){
             //if it a sup request i update my sup neighbor
             if (message.getData().get("join_ack").equals("sup")){
-                System.out.println("Le ack demande au node de changer son sup neighbor");
                 this.setSupNeighbor(newNode.getId(), newNode.getLoc());
             }
             //else I update my inf neighbor
             else if((message.getData().get("join_ack").equals("inf"))) {
-                System.out.println("Le ack demande au node de changer son sup neighbor");
                 this.setInfNeighbor(newNode.getId(), newNode.getLoc());
             }
         }
