@@ -68,13 +68,14 @@ public class Node {
 
     // for now easy version always go up but could be improved by taking the shortest way
     public void receive(Message message){
-        Node newNode = dht.getNodeById(message.getSenders().get(0));
-        System.out.println(newNode);
-        System.out.println("senders: " + message.getSenders().get(0));
-        System.out.println("Le node " + this.loc + " a recu un message de " + newNode.getLoc() + " de type " + message.getType() + " et de sous type " + message.getSousType());
-        System.out.println("Le contenu est " + message.getData());
+
         switch (message.getType()){
             case "join":
+                Node newNode = dht.getNodeById(message.getSenders().get(0));
+                System.out.println(newNode);
+                System.out.println("senders: " + message.getSenders().get(0));
+                System.out.println("Le node " + this.loc + " a recu un message de " + newNode.getLoc() + " de type " + message.getType() + " et de sous type " + message.getSousType());
+                System.out.println("Le contenu est " + message.getData());
                 switch (message.getSousType()){
                     case "insert":
                         this.joinInsert(message);
@@ -84,6 +85,7 @@ public class Node {
                         break;
                     case "request":
                         System.out.println("join_request");
+                        this.joinRequest(newNode,message);
 
 
 
@@ -188,6 +190,40 @@ public class Node {
             }
         }
     }
+
+
+    public void joinRequest(Node newNode, Message m) {
+        int newLoc = newNode.getLoc();
+        int newId = newNode.getId();
+        if (newLoc > loc) {
+            int supNeighborLoc = supNeighbor.get(1);
+            if (supNeighborLoc > newLoc || loc > supNeighborLoc) {
+                HashMap<String, String> mData = new HashMap<>();
+                mData.put("insertIdNode", Integer.toString(newId));
+                send(new Message("join", "insert", id, mData), supNeighbor.get(0));
+
+            } else {
+                m.addSender(id);
+                send(m, supNeighbor.get(0));
+            }
+        } else {
+            int infNeighborLoc = infNeighbor.get(1);
+            if (infNeighborLoc < newLoc || loc < infNeighborLoc) {
+                HashMap<String, String> mData = new HashMap<>();
+                mData.put("insertIdNode", Integer.toString(newId));
+                send(new Message("join", "insert", id, mData), infNeighbor.get(0));
+
+            } else {
+                m.addSender(id);
+                send(m, supNeighbor.get(0));
+            }
+
+        }
+    }
+
+
+
+
 
     @Override
     public String toString() {
