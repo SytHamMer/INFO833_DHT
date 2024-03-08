@@ -1,12 +1,13 @@
 
-r	java:S117	"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŠÀøÿÿÿÿ8ßÍ½öà1
+r	java:S117	"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŠÀøÿÿÿÿ8‡ñêá1
 r	java:S117
-"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•‹†ëúÿÿÿÿ8ßÍ½öà1
-i	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(·š†‡8àÍ½öà1
+"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•‹†ëúÿÿÿÿ8ˆñêá1
+i	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(·š†‡8ˆñêá1
 i
-java:S1223"LRename this method to prevent any misunderstanding or make it a constructor.(Çµí‘8àÍ½öà1
-Z
-java:S1854"8Remove this useless assignment to local variable "rand".(šŸ«íøÿÿÿÿ8äÍ½öà1
-K
-java:S1481")Remove this unused "rand" local variable.(šŸ«íøÿÿÿÿ8æÍ½öà1
-L	java:S106"+Replace this use of System.out by a logger.(Ñœğ„úÿÿÿÿ8éÍ½öà1
+java:S1223"LRename this method to prevent any misunderstanding or make it a constructor.(Çµí‘8ˆñêá1
+`
+java:S11550">Use isEmpty() to check whether the collection is empty or not.(¨ƒèßıÿÿÿÿ8ó‡¢êá1
+L	java:S1061"+Replace this use of System.out by a logger.(†Õ‹ıÿÿÿÿ8ñêá1
+L	java:S1062"+Replace this use of System.out by a logger.(›¨ÆÜÿÿÿÿÿ8 ±šêá1
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8õ‡¢êá1

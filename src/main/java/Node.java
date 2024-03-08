@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.PriorityQueue;
 import java.util.Random;
 
 
@@ -68,19 +67,18 @@ public class Node {
 
 
     // for now easy version always go up but could be improved by taking the shortest way
-    public void deliver(Message message){
+    public void receive(Message message){
+        Node newNode = dht.getNodeById(message.getSenders().get(0));
+        System.out.println(newNode);
+        System.out.println("senders: " + message.getSenders().get(0));
+        System.out.println("Le node " + this.loc + " a recu un message de " + newNode.getLoc() + " de type " + message.getType() + " et de sous type " + message.getSousType());
+        System.out.println("Le contenu est " + message.getData());
         switch (message.getType()){
             case "join":
                 switch (message.getSousType()){
                     case "insert":
-                        System.out.println("join_insert");
-                        Node node = this.getById( this.getSupNeighbor().get(0));
-                        //Send ack to the old leftNeighbor
-                        Message ack = new Message("join", "ack", this.getInfNeighbor().get(0), null);
-                        //Need to know how to access to events
-                        this.send(ack, this.getSupNeighbor().get(0), dht);
-                        //change the infNeighbor of the receiver node
-                        node.setInfNeighbor(message.getSenders().get(0), message.getSenders().get(1));
+                        this.joinInsert(message);
+
 
 
                         break;
@@ -92,6 +90,7 @@ public class Node {
                         break;
                     case "ack":
                         System.out.println("join_ack");
+                        this.joinAck(newNode,message);
                         break;
                     default:
                         System.out.println("join_error");
@@ -136,15 +135,65 @@ public class Node {
     }
 
     //génére l'event + calcul latence
-    public void send(Message message, int id,  DHT dht) {
+    public void send(Message message, int receiverId) {
         Random rand = new Random();
         //Latence aléatoire entre 10 et 50 ms amélioration possible (vrai calcul et non random)
         int latence = rand.nextInt(50 - 10 + 1) + 10;
-        int executeTime = latence + dht.getCurrentTime();
-        dht.getEvents().add(new Evenement(executeTime, id, message,dht));
+        int executeTime = latence + this.dht.getCurrentTime();
+        this.dht.getEvents().add(new Evenement(executeTime, receiverId, message,this.dht));
 
 
     }
+
+    //Insert the new node to the right place of the receiver node
+    public void joinInsert(Message message){
+
+        if (message.getData().containsKey("insertIdNode")){
+            //get the node to insert
+            System.out.println("Id du node a inserer : " + message.getData().get("insertIdNode"));
+            System.out.println("Ce meme id sous forme d'entier : " + Integer.parseInt(message.getData().get("insertIdNode")));
+            Node newNode = dht.getNodeById(Integer.parseInt(message.getData().get("insertIdNode")));
+            System.out.println("join_insert");
+            //Send ack to the new infNeighbor
+            HashMap<String,String> mData = new HashMap<String,String>();
+            mData.put("join_ack","sup");
+            Message ack = new Message("join", "ack", newNode.getId(), mData);
+            this.send(ack, newNode.getId());
+            //change the infNeighbor of the receiver node
+            this.setInfNeighbor(newNode.getId(), newNode.getLoc());
+        }
+        else{
+            System.out.println("Erreur dans le message pas d'information sur le node a inserer");
+        }
+
+    }
+
+
+    //Update our neighbor as he updated his neighbor
+    public void joinAck(Node newNode,Message message){
+        System.out.println("join_ack");
+        //change the neighbor of the receiver node (sup or inf depending on the message)
+
+        //check the data of the message
+        if (message.getData().containsKey("join_ack")){
+            //if it a sup request i update my sup neighbor
+            if (message.getData().get("join_ack").equals("sup")){
+                System.out.println("Le ack demande au node de changer son sup neighbor");
+                this.setSupNeighbor(newNode.getId(), newNode.getLoc());
+            }
+            //else I update my inf neighbor
+            else if((message.getData().get("join_ack").equals("inf"))) {
+                System.out.println("Le ack demande au node de changer son sup neighbor");
+                this.setInfNeighbor(newNode.getId(), newNode.getLoc());
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Node id : " + this.id + ", Node loc : " + this.loc;
+    }
+
 
 
 

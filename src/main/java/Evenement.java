@@ -1,4 +1,4 @@
-public class Evenement {
+public class Evenement implements Comparable<Evenement> {
     private int executeTime;
     private int idNode;
     private Message message;
@@ -11,7 +11,11 @@ public class Evenement {
         this.message = message;
         this.dht =dht;
     }
-
+    @Override
+    public int compareTo(Evenement other) {
+        // replace 'yourField' with the field you want to compare
+        return Integer.compare(this.executeTime, other.executeTime);
+    }
     public int getExecuteTime() {
         return executeTime;
     }
@@ -26,7 +30,7 @@ public class Evenement {
 
     public void execute(){
         Node node = dht.getNodeById(idNode);
-        node.deliver(message);
+        node.receive(message);
 
     }
 

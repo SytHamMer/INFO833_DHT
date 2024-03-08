@@ -7,9 +7,9 @@ public class Message {
     //id et loc
     private ArrayList<Integer> senders;
 
-    private Integer data; //maybe change the type
+    private HashMap<String,String> data;
     //first one
-    public Message(String type, String sousType, Integer idSender, Integer data) {
+    public Message(String type, String sousType, Integer idSender, HashMap<String,String> data) {
         this.type = type;
         this.sousType = sousType;
         this.senders = new ArrayList<>();
@@ -18,7 +18,7 @@ public class Message {
     }
 
     //Not first one
-    public Message(String type, String sousType, ArrayList<Integer> senders, Integer data) {
+    public Message(String type, String sousType, ArrayList<Integer> senders, HashMap<String,String> data) {
         this.type = type;
         this.sousType = sousType;
         this.senders = senders;
@@ -34,16 +34,14 @@ public class Message {
         return sousType;
     }
 
-    public void addSender(Integer idSender, Integer locSender) {
+    public void addSender(Integer idSender) {
         this.senders.add(idSender);
-        this.senders.add(locSender);
     }
 
     public ArrayList<Integer> getSenders() {
         return senders;
     }
-    //maybe change the type (HashMap<Integer, String>)
-    public Integer getData() {
+    public HashMap<String,String> getData() {
         return data;
     }
 
