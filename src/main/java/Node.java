@@ -3,9 +3,8 @@ import java.util.HashMap;
 import java.util.PriorityQueue;
 import java.util.Random;
 
-
+//enculé
 public class Node {
-
 
     private int id;
     private int loc;

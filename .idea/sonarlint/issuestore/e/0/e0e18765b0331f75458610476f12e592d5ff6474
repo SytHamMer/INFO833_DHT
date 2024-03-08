@@ -1,30 +1,30 @@
 
 v
-java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").( œ›¾8àéêá1
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").( œ›¾8Ó©æëá1
 v
-java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(¦·ÓÖ8àéêá1
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(¦·ÓÖ8Ó©æëá1
 v
-java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Äô—8àéêá1
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Äô—8Ó©æëá1
 i
-java:S1192D"GDefine a constant instead of duplicating this literal "insert" 3 times.(•„ó¯úÿÿÿÿ8õ£Ÿêá1
+java:S1192C"GDefine a constant instead of duplicating this literal "insert" 3 times.(•„ó¯úÿÿÿÿ8Ó©æëá1
 ~
-java:S1319)"aThe type of "data" should be an interface such as "Map" rather than the implementation "HashMap".(§Ä†ø8àéêá1
+java:S1319("aThe type of "data" should be an interface such as "Map" rather than the implementation "HashMap".(§Ä†ø8Ó©æëá1
 ’
-java:S1319-"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(­Æ×ƒşÿÿÿÿ8àéêá1
+java:S1319,"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(­Æ×ƒşÿÿÿÿ8Ó©æëá1
 
-java:S13191"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(œ›Úø8àéêá1
+java:S13190"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(œ›Úø8Ó©æëá1
 l
-java:S1104"OMake dht a static final constant or non-public and provide accessors if needed.(‚Êü¶8áéêá1
-h	java:S128A"LEnd this switch case with an unconditional break, return or throw statement.(–¯ëÂ8êéêá1
-L	java:S106E"+Replace this use of System.out by a logger.(í˜Ÿúÿÿÿÿ8êéêá1
-L	java:S106J"+Replace this use of System.out by a logger.(®æ…êùÿÿÿÿ8ëéêá1
-G	java:S106O"+Replace this use of System.out by a logger.(¦Ö°ª8ëéêá1
-L	java:S106R"+Replace this use of System.out by a logger.(„ñêÍøÿÿÿÿ8ëéêá1
-F	java:S106Y"+Replace this use of System.out by a logger.(çÕ²8ëéêá1
-G	java:S106e"+Replace this use of System.out by a logger.(ûÂƒŒ8ëéêá1
-L	java:S106k"+Replace this use of System.out by a logger.(èëş´ùÿÿÿÿ8ìéêá1
-G	java:S106s"+Replace this use of System.out by a logger.(öØÈ¢8ìéêá1
+java:S1104"OMake dht a static final constant or non-public and provide accessors if needed.(‚Êü¶8Ô©æëá1
+h	java:S128@"LEnd this switch case with an unconditional break, return or throw statement.(–¯ëÂ8Û©æëá1
+L	java:S106D"+Replace this use of System.out by a logger.(í˜Ÿúÿÿÿÿ8Ş©æëá1
+L	java:S106I"+Replace this use of System.out by a logger.(®æ…êùÿÿÿÿ8Ş©æëá1
+G	java:S106N"+Replace this use of System.out by a logger.(¦Ö°ª8Ş©æëá1
+L	java:S106Q"+Replace this use of System.out by a logger.(„ñêÍøÿÿÿÿ8Ş©æëá1
+F	java:S106X"+Replace this use of System.out by a logger.(çÕ²8Ş©æëá1
+G	java:S106d"+Replace this use of System.out by a logger.(ûÂƒŒ8ß©æëá1
+L	java:S106j"+Replace this use of System.out by a logger.(èëş´ùÿÿÿÿ8ß©æëá1
+G	java:S106r"+Replace this use of System.out by a logger.(öØÈ¢8ß©æëá1
 @
-java:S2119}"Save and re-use this "Random".(šŸ«íøÿÿÿÿ8íéêá1
+java:S2119|"Save and re-use this "Random".(šŸ«íøÿÿÿÿ8à©æëá1
 E
-java:S1068"(Remove this unused "data" private field.(ÑËËÈ8ğéêá1
+java:S1068"(Remove this unused "data" private field.(ÑËËÈ8å©æëá1

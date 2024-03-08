@@ -1,11 +1,11 @@
 
 ƒ
-java:S1319"aThe type of "data" should be an interface such as "Map" rather than the implementation "HashMap".(ÍÏÆ®şÿÿÿÿ8¨Äœêá1
+java:S1319"aThe type of "data" should be an interface such as "Map" rather than the implementation "HashMap".(ÍÏÆ®şÿÿÿÿ8¹©æëá1
 „
-java:S1319"gThe type of "senders" should be an interface such as "List" rather than the implementation "ArrayList".(ÏüÃ¯8ë‰ÃÚ1
+java:S1319"gThe type of "senders" should be an interface such as "List" rather than the implementation "ArrayList".(ÏüÃ¯8º©æëá1
 ~
-java:S1319"aThe type of "data" should be an interface such as "Map" rather than the implementation "HashMap".(ÏüÃ¯8µşœêá1
+java:S1319"aThe type of "data" should be an interface such as "Map" rather than the implementation "HashMap".(ÏüÃ¯8º©æëá1
 
-java:S1319)"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(±’„¿8ì•’ÃÚ1
+java:S1319)"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(±’„¿8º©æëá1
 
-java:S1319-"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(€óÅÃûÿÿÿÿ8‡ êá1
+java:S1319-"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(€óÅÃûÿÿÿÿ8º©æëá1
