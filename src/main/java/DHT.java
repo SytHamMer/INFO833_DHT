@@ -34,6 +34,10 @@ public class DHT {
         return null;
     }
 
+    public ArrayList<Node> getNodes(){
+        return this.nodes;
+    }
+
     public void setCurrentTime(int currentTime) {
         this.currentTime = currentTime;
     }

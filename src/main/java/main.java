@@ -14,9 +14,11 @@ public class main {
 
         //Fill the dht with nodes
         //10 nodes
-        for (int i = 0; i<10; i++){
+        /*for (int i = 0; i<10; i++){
             dht.newNode(i, rand.nextInt(100));
-        }
+        }*/
+
+
 
         //Set up the neighbors of three nodes of beginning
         dht.newNode(11,0);
@@ -36,6 +38,9 @@ public class main {
         dht.getNodeById(13).setSupNeighbor(11, 0);
 
 
+        //Node to insert
+
+        dht.newNode(0, 53);
         //First events
         dht.getEvents().add(new Evenement(0, 11, new Message("join", "request", 0, null), dht));
 
@@ -45,16 +50,27 @@ public class main {
 
         //Main loop
         int cpt = 0;
-        while (dht.getCurrentTime()<end_time || dht.getEvents().size()>0){
+        while (dht.getCurrentTime()<end_time && dht.getEvents().size()>0){
             System.out.println("Event : " + cpt);
             System.out.println("Current time : " + dht.getCurrentTime());
             cpt++;
+            System.out.println(events.size());
             Evenement event = dht.getEvents().poll();
             event.execute();
             dht.setCurrentTime(event.getExecuteTime());
 
 
-
         }
+
+
+        //Check
+        for (Node node : dht.getNodes()){
+            System.out.println("Node " + node.getLoc() + " has for inf neighbor " + node.getInfNeighbor().get(1) + " and for sup neighbor " + node.getSupNeighbor().get(1));
+        }
+
+
+
+
+
     }
 }

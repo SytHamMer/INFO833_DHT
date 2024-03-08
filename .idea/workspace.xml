@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1648ec8f-0699-4860-89c7-9520ef74ed0e" name="Changes" comment="[MERGE CONFLICT]">
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/0/e0e18765b0331f75458610476f12e592d5ff6474" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/0/e0e18765b0331f75458610476f12e592d5ff6474" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DHT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DHT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Evenement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Evenement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

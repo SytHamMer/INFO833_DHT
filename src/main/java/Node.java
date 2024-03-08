@@ -27,11 +27,13 @@ public class Node {
     }
 
     public void setInfNeighbor(int id, int loc){
+        this.infNeighbor.clear();
         this.infNeighbor.add(id);
         this.infNeighbor.add(loc);
     }
 
     public void setSupNeighbor(int id, int loc){
+        this.supNeighbor.clear();
         this.supNeighbor.add(id);
         this.supNeighbor.add(loc);
     }
@@ -69,71 +71,54 @@ public class Node {
     // for now easy version always go up but could be improved by taking the shortest way
     public void receive(Message message){
 
-        switch (message.getType()){
-            case "join":
-                Node newNode = dht.getNodeById(message.getSenders().get(0));
-                System.out.println(newNode);
-                System.out.println("senders: " + message.getSenders().get(0));
-                System.out.println("Le node " + this.loc + " a recu un message de " + newNode.getLoc() + " de type " + message.getType() + " et de sous type " + message.getSousType());
-                System.out.println("Le contenu est " + message.getData());
-                switch (message.getSousType()){
-                    case "insert":
-                        this.joinInsert(message);
 
 
-
-                        break;
-                    case "request":
-                        System.out.println("join_request");
-                        this.joinRequest(newNode,message);
-
-
-
-                        break;
-                    case "ack":
-                        System.out.println("join_ack");
-                        this.joinAck(newNode,message);
-                        break;
-                    default:
-                        System.out.println("join_error");
-                        break;
-
-                }
-            case "leave":
-                switch (message.getSousType()){
-                    case "exit":
-                        System.out.println("leave_exit");
-                        //change my neighbor with the data of the message
-
-
-
-                        //Send ack to new neighbor
-
-
-                        break;
-
-
-                    case "ack":
-                            System.out.println("leave_ack");
-
-                            //change my neighbor with the node of the message
-                            break;
-
-                    default:
-                        System.out.println("leave_error");
-                        break;
-                        }
-
-                        break;
-
-
+        if (message.getType() == "join"){
+            Node newNode = dht.getNodeById(message.getSenders().get(0));
+            System.out.println(newNode);
+            System.out.println("senders: " + message.getSenders().get(0));
+            System.out.println("Le node " + this.loc + " a recu un message de " + newNode.getLoc() + " de type " + message.getType() + " et de sous type " + message.getSousType());
+            System.out.println("Le contenu est " + message.getData());
+            switch (message.getSousType()){
+                case "insert":
+                    this.joinInsert(message);
+                    break;
+                case "request":
+                    System.out.println("join_request");
+                    this.joinRequest(newNode,message);
+                    break;
+                case "ack":
+                    System.out.println("join_ack");
+                    this.joinAck(newNode,message);
+                    break;
                 default:
-                    System.out.println("error");
-
+                    System.out.println("join_error");
+                    break;
+            }
 
 
         }
+        else if (message.getType() == "leave"){
+            switch (message.getSousType()){
+                case "exit":
+                    System.out.println("leave_exit");
+                    //change my neighbor with the data of the message
+                    //Send ack to new neighbor
+                    break;
+                case "ack":
+                    System.out.println("leave_ack");
+                    //change my neighbor with the node of the message
+                    break;
+                default:
+                    System.out.println("leave_error");
+                    break;
+            }
 
+        }
+
+        else{
+            System.out.println("error");
+        }
     }
 
     //génére l'event + calcul latence
@@ -159,7 +144,7 @@ public class Node {
             //Send ack to the new infNeighbor
             HashMap<String,String> mData = new HashMap<String,String>();
             mData.put("join_ack","sup");
-            Message ack = new Message("join", "ack", newNode.getId(), mData);
+            Message ack = new Message("join", "ack", this.getId(), mData);
             this.send(ack, newNode.getId());
             //change the infNeighbor of the receiver node
             this.setInfNeighbor(newNode.getId(), newNode.getLoc());
@@ -198,9 +183,13 @@ public class Node {
         if (newLoc > loc) {
             int supNeighborLoc = supNeighbor.get(1);
             if (supNeighborLoc > newLoc || loc > supNeighborLoc) {
-                HashMap<String, String> mData = new HashMap<>();
-                mData.put("insertIdNode", Integer.toString(newId));
-                send(new Message("join", "insert", id, mData), supNeighbor.get(0));
+                HashMap<String, String> insertData = new HashMap<>();
+                insertData.put("insertIdNode", Integer.toString(newId));
+                send(new Message("join", "insert", id, insertData), supNeighbor.get(0));
+                HashMap<String, String> ackData = new HashMap<>();
+                ackData.put("join_ack", "inf");
+                send(new Message("join", "ack", id, ackData), newId);
+                this.setSupNeighbor(newId, newLoc);
 
             } else {
                 m.addSender(id);
@@ -209,9 +198,13 @@ public class Node {
         } else {
             int infNeighborLoc = infNeighbor.get(1);
             if (infNeighborLoc < newLoc || loc < infNeighborLoc) {
-                HashMap<String, String> mData = new HashMap<>();
-                mData.put("insertIdNode", Integer.toString(newId));
-                send(new Message("join", "insert", id, mData), infNeighbor.get(0));
+                HashMap<String, String> insertData = new HashMap<>();
+                insertData.put("insertIdNode", Integer.toString(newId));
+                send(new Message("join", "insert", id, insertData), infNeighbor.get(0));
+                HashMap<String, String> ackData = new HashMap<>();
+                ackData.put("join_ack", "sup");
+                send(new Message("join", "ack", id, ackData), newId);
+                this.setInfNeighbor(newId, newLoc);
 
             } else {
                 m.addSender(id);

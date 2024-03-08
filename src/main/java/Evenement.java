@@ -1,13 +1,13 @@
 public class Evenement implements Comparable<Evenement> {
     private int executeTime;
-    private int idNode;
+    private int idReceiver;
     private Message message;
 
     private DHT dht;
 
-    public Evenement(int executeTime, int idNode, Message message, DHT dht) {
+    public Evenement(int executeTime, int idReceiver, Message message, DHT dht) {
         this.executeTime = executeTime;
-        this.idNode = idNode;
+        this.idReceiver = idReceiver;
         this.message = message;
         this.dht =dht;
     }
@@ -20,8 +20,8 @@ public class Evenement implements Comparable<Evenement> {
         return executeTime;
     }
 
-    public int getIdNode() {
-        return idNode;
+    public int getIdReceiver() {
+        return idReceiver;
     }
 
     public Message getMessage() {
@@ -29,7 +29,7 @@ public class Evenement implements Comparable<Evenement> {
     }
 
     public void execute(){
-        Node node = dht.getNodeById(idNode);
+        Node node = dht.getNodeById(idReceiver);
         node.receive(message);
 
     }
