@@ -14,9 +14,9 @@ public class main {
 
         //Fill the dht with nodes
         //10 nodes
-        /*for (int i = 0; i<10; i++){
+        for (int i = 0; i<3; i++){
             dht.newNode(i, rand.nextInt(100));
-        }*/
+        }
 
 
 
@@ -40,10 +40,17 @@ public class main {
 
         //Node to insert
 
+        for (Node node : dht.getNodes()){
+            if (node.getSupNeighbor().size() == 0 && node.getInfNeighbor().size() == 0){
+                node.send(new Message("join", "request", node.getId(), null),11);
+            }
+        }
+
+        /*
         dht.newNode(0, 53);
         //First events
         dht.getEvents().add(new Evenement(0, 11, new Message("join", "request", 0, null), dht));
-
+        */
 
 
 
@@ -59,9 +66,9 @@ public class main {
             Evenement event = dht.getEvents().poll();
             event.execute();
             int time = dht.getCurrentTime();
-            int idReceiver = event.getIdReceiver();
-            String message = event.getMessage().getType() + "_"+  event.getMessage().getSousType() + " send by " + event.getMessage().getSenders().get(0) + " contenu : " + event.getMessage().getData();
-            System.out.println("{" + time + "," + idReceiver + "," + message + "}");
+            int locReceiver = dht.getNodeById(event.getIdReceiver()).getLoc();
+            String message = event.getMessage().getType() + "_"+  event.getMessage().getSousType() + " send by " + dht.getNodeById(event.getMessage().getSenders().get(0)).getLoc() + " contenu : " + event.getMessage().getData();
+            System.out.println("{" + time + "," + locReceiver + "," + message + "}");
             dht.setCurrentTime(event.getExecuteTime());
 
         }

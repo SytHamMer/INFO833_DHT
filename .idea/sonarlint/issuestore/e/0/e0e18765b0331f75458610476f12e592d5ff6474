@@ -6,13 +6,13 @@ java:S2293"YReplace the type specification in this constructor call with the d
 v
 java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Äô—8ïÚ´íá1
 |
-java:S2293‘"YReplace the type specification in this constructor call with the diamond operator ("<>").(îÅ„ùÿÿÿÿ8ïÚ´íá1
-f
-java:S1192["IDefine a constant instead of duplicating this literal "join_ack" 8 times.(¦Ö°ª8ğÚ´íá1
+java:S2293‡"YReplace the type specification in this constructor call with the diamond operator ("<>").(îÅ„ùÿÿÿÿ8ïÚ´íá1
+g
+java:S1192ˆ"IDefine a constant instead of duplicating this literal "join_ack" 6 times.(Ÿ³Í¢8è«Ùíá1
 k
-java:S1192Š"MDefine a constant instead of duplicating this literal "insertIdNode" 6 times.(âÁ†8ğÚ´íá1
+java:S1192‚"MDefine a constant instead of duplicating this literal "insertIdNode" 4 times.(âÁ†8ğÚ´íá1
 i
-java:S1192S"GDefine a constant instead of duplicating this literal "insert" 3 times.(•„ó¯úÿÿÿÿ8ğÚ´íá1
+java:S1192O"GDefine a constant instead of duplicating this literal "insert" 3 times.(•„ó¯úÿÿÿÿ8ğÚ´íá1
 ~
 java:S1319*"aThe type of "data" should be an interface such as "Map" rather than the implementation "HashMap".(§Ä†ø8ñÚ´íá1
 ’
@@ -24,30 +24,16 @@ java:S1104"OMake dht a static final constant or non-public and provide accesso
 Y
 java:S4973L"<Strings and Boxed types should be compared using "equals()".(×Ÿ«Û8ôÚ´íá1
 ^
-java:S4973e"<Strings and Boxed types should be compared using "equals()".(áäòÅûÿÿÿÿ8õÚ´íá1
+java:S4973_"<Strings and Boxed types should be compared using "equals()".(áäòÅûÿÿÿÿ8õÚ´íá1
 K
 java:S1172>")Remove this unused method parameter "id".(‘ªì‰üÿÿÿÿ8®Û´íá1
 L
 java:S1172B"*Remove this unused method parameter "loc".(Şïéáøÿÿÿÿ8°Û´íá1
-L	java:S106N"+Replace this use of System.out by a logger.(Ú·Å¼ûÿÿÿÿ8´Û´íá1
-G	java:S106O"+Replace this use of System.out by a logger.(–«–°8µÛ´íá1
-G	java:S106P"+Replace this use of System.out by a logger.(ñ†ô¢8·Û´íá1
-L	java:S106Q"+Replace this use of System.out by a logger.(·»ï€úÿÿÿÿ8¹Û´íá1
-L	java:S106W"+Replace this use of System.out by a logger.(®æ…êùÿÿÿÿ8ºÛ´íá1
-G	java:S106["+Replace this use of System.out by a logger.(¦Ö°ª8»Û´íá1
-L	java:S106_"+Replace this use of System.out by a logger.(„ñêÍøÿÿÿÿ8¼Û´íá1
-F	java:S106h"+Replace this use of System.out by a logger.(çÕ²8½Û´íá1
-G	java:S106m"+Replace this use of System.out by a logger.(ûÂƒŒ8¾Û´íá1
-L	java:S106q"+Replace this use of System.out by a logger.(èëş´ùÿÿÿÿ8¾Û´íá1
-G	java:S106x"+Replace this use of System.out by a logger.(öØÈ¢8¿Û´íá1
+L	java:S106Y"+Replace this use of System.out by a logger.(„ñêÍøÿÿÿÿ8½Û´íá1
+L	java:S106i"+Replace this use of System.out by a logger.(èëş´ùÿÿÿÿ8¿Û´íá1
+G	java:S106p"+Replace this use of System.out by a logger.(öØÈ¢8ÇÛ´íá1
 @
-java:S2119~"Save and re-use this "Random".(šŸ«íøÿÿÿÿ8ÃÛ´íá1
-M	java:S106Œ"+Replace this use of System.out by a logger.(–®áˆùÿÿÿÿ8ÇÛ´íá1
-H	java:S106"+Replace this use of System.out by a logger.(Ğš‡8ÉÛ´íá1
-M	java:S106"+Replace this use of System.out by a logger.(í˜Ÿúÿÿÿÿ8ÌÛ´íá1
-M	java:S106™"+Replace this use of System.out by a logger.(Œ¯ˆæûÿÿÿÿ8ĞÛ´íá1
-H	java:S106¡"+Replace this use of System.out by a logger.(¦Ö°ª8ÑÛ´íá1
-M	java:S106¨"+Replace this use of System.out by a logger.(ıÜ„øÿÿÿÿÿ8ÓÛ´íá1
-M	java:S106­"+Replace this use of System.out by a logger.(ıÜ„øÿÿÿÿÿ8ÕÛ´íá1
+java:S2119v"Save and re-use this "Random".(šŸ«íøÿÿÿÿ8ÃÛ´íá1
+M	java:S106"+Replace this use of System.out by a logger.(Œ¯ˆæûÿÿÿÿ8ÑÛ´íá1
 E
 java:S1068"(Remove this unused "data" private field.(ÑËËÈ8ãÛ´íá1
