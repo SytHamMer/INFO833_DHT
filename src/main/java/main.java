@@ -14,7 +14,7 @@ public class main {
 
         //Fill the dht with nodes
         //10 nodes
-        for (int i = 0; i<3; i++){
+        for (int i = 0; i<10; i++){
             dht.newNode(i, rand.nextInt(100));
         }
 
@@ -60,7 +60,7 @@ public class main {
 
 
         System.out.println("Evolution:");
-        System.out.println("{'timestamp','idReceiver','message'}");
+        System.out.println("{'timestamp','locReceiver', 'message'}");
         while (dht.getCurrentTime()<end_time && dht.getEvents().size()>0){
             cpt++;
             Evenement event = dht.getEvents().poll();

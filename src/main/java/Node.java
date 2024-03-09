@@ -17,6 +17,10 @@ public class Node {
 
     public DHT dht;
 
+    private boolean isWaiting;
+
+    private ArrayList<Message> waitingQueue;
+
     public Node(int id, int loc, DHT dht) {
         this.id = id;
         this.loc = loc;
@@ -24,6 +28,8 @@ public class Node {
         this.infNeighbor = new ArrayList<Integer>();
         this.dht =  dht;
         this.data = new HashMap<Integer, String>();
+        this.isWaiting = false;
+        this.waitingQueue = new ArrayList<Message>();
     }
 
     public void setInfNeighbor(int id, int loc){
@@ -37,7 +43,6 @@ public class Node {
         this.supNeighbor.add(id);
         this.supNeighbor.add(loc);
     }
-
 
     public void setData(HashMap<Integer, String> data) {
         this.data = data;
@@ -59,57 +64,58 @@ public class Node {
         return loc;
     }
 
-    public Node getById(int id){
-        return this;
+
+    public boolean getIsWaiting(){
+        return this.isWaiting;
     }
 
-    public Node getByLoc(int loc){
-        return this;
+    public ArrayList<Message> getWaitingQueue() {
+        return waitingQueue;
     }
-
 
     // for now easy version always go up but could be improved by taking the shortest way
     public void receive(Message message){
 
+        if (!isWaiting) {
+
+            if (message.getType() == "join") {
+                Node newNode = dht.getNodeById(message.getSenders().get(0));
+                switch (message.getSousType()) {
+                    case "insert":
+                        this.joinInsert(message);
+                        break;
+                    case "request":
+                        this.joinRequest(newNode, message);
+                        break;
+                    case "ack":
+                        this.joinAck(newNode, message);
+                        break;
+                    default:
+                        System.out.println("join_error");
+                        break;
+                }
 
 
-        if (message.getType() == "join"){
-            Node newNode = dht.getNodeById(message.getSenders().get(0));
-            switch (message.getSousType()){
-                case "insert":
-                    this.joinInsert(message);
-                    break;
-                case "request":
-                    this.joinRequest(newNode,message);
-                    break;
-                case "ack":
-                    this.joinAck(newNode,message);
-                    break;
-                default:
-                    System.out.println("join_error");
-                    break;
+            } else if (message.getType() == "leave") {
+                switch (message.getSousType()) {
+                    case "exit":
+                        //change my neighbor with the data of the message
+                        //Send ack to new neighbor
+                        break;
+                    case "ack":
+                        //change my neighbor with the node of the message
+                        break;
+                    default:
+                        System.out.println("leave_error");
+                        break;
+                }
+
+            } else {
+                System.out.println("error");
             }
-
-
-        }
-        else if (message.getType() == "leave"){
-            switch (message.getSousType()){
-                case "exit":
-                    //change my neighbor with the data of the message
-                    //Send ack to new neighbor
-                    break;
-                case "ack":
-                    //change my neighbor with the node of the message
-                    break;
-                default:
-                    System.out.println("leave_error");
-                    break;
-            }
-
-        }
-
-        else{
-            System.out.println("error");
+        } else {
+            waitingQueue.add(message);
+            System.out.println(loc + " " + waitingQueue);
         }
     }
 
@@ -126,7 +132,8 @@ public class Node {
 
     //Insert the new node to the right place of the receiver node
     public void joinInsert(Message message){
-
+        this.isWaiting = true;
+        System.out.println(loc + " " + isWaiting);
         if (message.getData().containsKey("insertIdNode")){
             //get the node to insert
 
@@ -143,6 +150,8 @@ public class Node {
             System.out.println("Erreur dans le message pas d'information sur le node a inserer");
         }
 
+        this.isWaiting = false;
+        System.out.println(loc + " " + isWaiting);
     }
 
 
@@ -165,11 +174,14 @@ public class Node {
 
 
     public void joinRequest(Node newNode, Message m) {
+        System.out.println(loc);
         int newLoc = newNode.getLoc();
         int newId = newNode.getId();
         if (newLoc > loc) {
             int supNeighborLoc = supNeighbor.get(1);
             if (supNeighborLoc > newLoc || loc > supNeighborLoc) {
+                this.isWaiting = true;
+                System.out.println(loc + " " + isWaiting);
                 HashMap<String, String> insertData = new HashMap<>();
                 insertData.put("insertIdNode", Integer.toString(newId));
                 send(new Message("join", "insert", id, insertData), supNeighbor.get(0));
@@ -177,6 +189,8 @@ public class Node {
                 ackData.put("join_ack", "inf");
                 send(new Message("join", "ack", id, ackData), newId);
                 this.setSupNeighbor(newId, newLoc);
+                this.isWaiting = false ;
+                System.out.println(loc + " " + isWaiting);
 
             } else {
                 m.addSender(id);
@@ -185,6 +199,8 @@ public class Node {
         } else {
             int infNeighborLoc = infNeighbor.get(1);
             if (infNeighborLoc < newLoc || loc < infNeighborLoc) {
+                this.isWaiting = true;
+                System.out.println(loc + " " + isWaiting);
                 HashMap<String, String> insertData = new HashMap<>();
                 insertData.put("insertIdNode", Integer.toString(newId));
                 send(new Message("join", "insert", id, insertData), infNeighbor.get(0));
@@ -192,6 +208,8 @@ public class Node {
                 ackData.put("join_ack", "sup");
                 send(new Message("join", "ack", id, ackData), newId);
                 this.setInfNeighbor(newId, newLoc);
+                this.isWaiting = false;
+                System.out.println(loc + " " + isWaiting);
 
             } else {
                 m.addSender(id);
