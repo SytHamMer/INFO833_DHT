@@ -14,35 +14,36 @@ public class main {
 
         //Fill the dht with nodes
         //10 nodes
-        for (int i = 0; i<10; i++){
-            dht.newNode(i, rand.nextInt(100));
+        for (int i = 0; i<3; i++){
+            int id = i+3;
+            dht.newNode(id, rand.nextInt(100));
         }
 
 
 
         //Set up the neighbors of three nodes of beginning
-        dht.newNode(11,0);
-        dht.newNode(12,50);
-        dht.newNode(13,100);
+        dht.newNode(0,0);
+        dht.newNode(1,50);
+        dht.newNode(2,100);
 
         //Node 11
-        dht.getNodeById(11).setInfNeighbor(13, 100);
-        dht.getNodeById(11).setSupNeighbor(12, 50);
+        dht.getNodeById(0).setInfNeighbor(2, 100);
+        dht.getNodeById(0).setSupNeighbor(1, 50);
 
         //Node 12
-        dht.getNodeById(12).setInfNeighbor(11, 0);
-        dht.getNodeById(12).setSupNeighbor(13, 100);
+        dht.getNodeById(1).setInfNeighbor(0, 0);
+        dht.getNodeById(1).setSupNeighbor(2, 100);
 
         //Node 13
-        dht.getNodeById(13).setInfNeighbor(12, 50);
-        dht.getNodeById(13).setSupNeighbor(11, 0);
+        dht.getNodeById(2).setInfNeighbor(1, 50);
+        dht.getNodeById(2).setSupNeighbor(0, 0);
 
 
         //Node to insert
 
         for (Node node : dht.getNodes()){
             if (node.getSupNeighbor().size() == 0 && node.getInfNeighbor().size() == 0){
-                node.send(new Message("join", "request", node.getId(), null),11);
+                node.send(new Message("join", "request", node.getId(), null),0);
             }
         }
 
@@ -56,13 +57,10 @@ public class main {
 
 
         //Main loop
-        int cpt = 0;
-
 
         System.out.println("Evolution:");
         System.out.println("{'timestamp','locReceiver', 'message'}");
         while (dht.getCurrentTime()<end_time && dht.getEvents().size()>0){
-            cpt++;
             Evenement event = dht.getEvents().poll();
             event.execute();
             int time = dht.getCurrentTime();

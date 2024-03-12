@@ -73,49 +73,69 @@ public class Node {
         return waitingQueue;
     }
 
+
+    public void makeAChoice(Message message){
+        //function that will make a choice depending on the message
+        if (message.getType() == "join") {
+            Node newNode = dht.getNodeById(message.getSenders().get(0));
+            switch (message.getSousType()) {
+                case "insert":
+                    this.joinInsert(message);
+                    break;
+                case "request":
+                    this.joinRequest(newNode, message);
+                    break;
+                case "ack":
+                    this.joinAck(newNode, message);
+                    break;
+                default:
+                    System.out.println("join_error");
+                    break;
+            }
+
+
+        } else if (message.getType() == "leave") {
+            switch (message.getSousType()) {
+                case "exit":
+                    //change my neighbor with the data of the message
+                    //Send ack to new neighbor
+                    break;
+                case "ack":
+                    //change my neighbor with the node of the message
+                    break;
+                default:
+                    System.out.println("leave_error");
+                    break;
+            }
+
+        } else {
+            System.out.println("error");
+        }
+
+
+
+    }
     // for now easy version always go up but could be improved by taking the shortest way
     public void receive(Message message){
 
         if (!isWaiting) {
-
-            if (message.getType() == "join") {
-                Node newNode = dht.getNodeById(message.getSenders().get(0));
-                switch (message.getSousType()) {
-                    case "insert":
-                        this.joinInsert(message);
-                        break;
-                    case "request":
-                        this.joinRequest(newNode, message);
-                        break;
-                    case "ack":
-                        this.joinAck(newNode, message);
-                        break;
-                    default:
-                        System.out.println("join_error");
-                        break;
+            if(waitingQueue.size() > 0) {
+                System.out.println("executing waiting messages");
+                //Executer tous les messages ici ?
+                for (Message waitMess : waitingQueue) {
+                    // cant receive because will be put again in the waitingQueue
+                    // so need to do almost as the recieve function (create a new one ?)
+                    this.waitingQueue.remove(waitMess);
+                    this.makeAChoice(waitMess);
                 }
-
-
-            } else if (message.getType() == "leave") {
-                switch (message.getSousType()) {
-                    case "exit":
-                        //change my neighbor with the data of the message
-                        //Send ack to new neighbor
-                        break;
-                    case "ack":
-                        //change my neighbor with the node of the message
-                        break;
-                    default:
-                        System.out.println("leave_error");
-                        break;
-                }
-
-            } else {
-                System.out.println("error");
+            }
+            else{
+                this.makeAChoice(message);
             }
         } else {
             waitingQueue.add(message);
             System.out.println(loc + " " + waitingQueue);
+
         }
     }
 
@@ -174,7 +194,6 @@ public class Node {
 
 
     public void joinRequest(Node newNode, Message m) {
-        System.out.println(loc);
         int newLoc = newNode.getLoc();
         int newId = newNode.getId();
         if (newLoc > loc) {
