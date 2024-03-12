@@ -21,6 +21,7 @@ public class Node {
 
     private ArrayList<Message> waitingQueue;
 
+
     public Node(int id, int loc, DHT dht) {
         this.id = id;
         this.loc = loc;
@@ -30,6 +31,7 @@ public class Node {
         this.data = new HashMap<Integer, String>();
         this.isWaiting = false;
         this.waitingQueue = new ArrayList<Message>();
+
     }
 
     public void setInfNeighbor(int id, int loc){
@@ -117,21 +119,11 @@ public class Node {
     }
     // for now easy version always go up but could be improved by taking the shortest way
     public void receive(Message message){
+        System.out.println("WaitingQueue actuelle du node " + this.getLoc() + " : " + this.waitingQueue);
+        //change this if with a boolean variable ?
+        if (!isWaiting  || (message.getType().equals("join") && message.getSousType().equals("ack") && message.getData().get("join_ack").equals("unlock"))) {
 
-        if (!isWaiting) {
-            if(waitingQueue.size() > 0) {
-                System.out.println("executing waiting messages");
-                //Executer tous les messages ici ?
-                for (Message waitMess : waitingQueue) {
-                    // cant receive because will be put again in the waitingQueue
-                    // so need to do almost as the recieve function (create a new one ?)
-                    this.waitingQueue.remove(waitMess);
-                    this.makeAChoice(waitMess);
-                }
-            }
-            else{
-                this.makeAChoice(message);
-            }
+            this.makeAChoice(message);
         } else {
             waitingQueue.add(message);
             System.out.println(loc + " " + waitingQueue);
@@ -156,11 +148,13 @@ public class Node {
         System.out.println(loc + " " + isWaiting);
         if (message.getData().containsKey("insertIdNode")){
             //get the node to insert
-
             Node newNode = dht.getNodeById(Integer.parseInt(message.getData().get("insertIdNode")));
-            //Send ack to the new infNeighbor
+            //Send ack to the new Neighbor
             HashMap<String,String> mData = new HashMap<String,String>();
-            mData.put("join_ack","sup");
+
+            mData.put("join_ack",message.getData().get("insertTypeNeighbor"));
+
+
             Message ack = new Message("join", "ack", this.getId(), mData);
             this.send(ack, newNode.getId());
             //change the infNeighbor of the receiver node
@@ -170,7 +164,6 @@ public class Node {
             System.out.println("Erreur dans le message pas d'information sur le node a inserer");
         }
 
-        this.isWaiting = false;
         System.out.println(loc + " " + isWaiting);
     }
 
@@ -178,16 +171,29 @@ public class Node {
     //Update our neighbor as he updated his neighbor
     public void joinAck(Node newNode,Message message){
         //change the neighbor of the receiver node (sup or inf depending on the message)
-
         //check the data of the message
         if (message.getData().containsKey("join_ack")){
             //if it a sup request i update my sup neighbor
             if (message.getData().get("join_ack").equals("sup")){
                 this.setSupNeighbor(newNode.getId(), newNode.getLoc());
+                unlockAck();
+
             }
             //else I update my inf neighbor
             else if((message.getData().get("join_ack").equals("inf"))) {
                 this.setInfNeighbor(newNode.getId(), newNode.getLoc());
+                unlockAck();
+            }
+            else if((message.getData().get("join_ack").equals("unlock"))){
+                this.isWaiting = false;
+                System.out.println("UNLOKCK");
+                //execute the waitingQueue if their is any
+                System.out.println("size: " + this.waitingQueue.size());
+                executeWaitingQueue();
+
+            }
+            else{
+                System.out.println("Erreur dans le message pas d'information sur le type de voisin a mettre a jour");
             }
         }
     }
@@ -203,35 +209,37 @@ public class Node {
                 System.out.println(loc + " " + isWaiting);
                 HashMap<String, String> insertData = new HashMap<>();
                 insertData.put("insertIdNode", Integer.toString(newId));
+                insertData.put("insertTypeNeighbor", "sup");
                 send(new Message("join", "insert", id, insertData), supNeighbor.get(0));
                 HashMap<String, String> ackData = new HashMap<>();
                 ackData.put("join_ack", "inf");
                 send(new Message("join", "ack", id, ackData), newId);
                 this.setSupNeighbor(newId, newLoc);
-                this.isWaiting = false ;
                 System.out.println(loc + " " + isWaiting);
 
             } else {
                 m.addSender(id);
+                executeWaitingQueue();
                 send(m, supNeighbor.get(0));
             }
         } else {
             int infNeighborLoc = infNeighbor.get(1);
-            if (infNeighborLoc < newLoc || loc < infNeighborLoc) {
+            if (infNeighborLoc > loc) {
                 this.isWaiting = true;
                 System.out.println(loc + " " + isWaiting);
                 HashMap<String, String> insertData = new HashMap<>();
                 insertData.put("insertIdNode", Integer.toString(newId));
+                insertData.put("insertTypeNeighbor", "inf");
                 send(new Message("join", "insert", id, insertData), infNeighbor.get(0));
                 HashMap<String, String> ackData = new HashMap<>();
                 ackData.put("join_ack", "sup");
                 send(new Message("join", "ack", id, ackData), newId);
                 this.setInfNeighbor(newId, newLoc);
-                this.isWaiting = false;
                 System.out.println(loc + " " + isWaiting);
 
             } else {
                 m.addSender(id);
+                executeWaitingQueue();
                 send(m, supNeighbor.get(0));
             }
 
@@ -240,7 +248,32 @@ public class Node {
 
 
 
+    public void executeWaitingQueue(){
+        if(waitingQueue.size() > 0) {
+            System.out.println("executing waiting messages");
+            //Executer tous les messages ici ?
+            if(waitingQueue.get(0).getSenders().size()<5) {
+                System.out.println(dht.getNodeById(waitingQueue.get(0).getSenders().get(0)) + " " + waitingQueue.get(0).getSousType() + " " + waitingQueue.get(0).getData());
+            }
+            this.makeAChoice(waitingQueue.get(0));
+            waitingQueue.remove(0);
+            System.out.println("WaintingQueue restante :" + waitingQueue);
+        }
+        else{
+            System.out.println("No waiting messages");
+        }
+    }
+    public void unlockAck(){
+        if (this.getSupNeighbor().size()> 0 && this.getInfNeighbor().size() > 0){
+            System.out.println("UNLOCK SENT");
+            HashMap<String, String> ackData = new HashMap<>();
+            ackData.put("join_ack", "unlock");
+            send(new Message("join", "ack", id, ackData), this.getSupNeighbor().get(0));
+            send(new Message("join", "ack", id, ackData), this.getInfNeighbor().get(0));
 
+        }
+
+    }
 
     @Override
     public String toString() {

@@ -1,3 +1,4 @@
+import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.Random;
@@ -12,17 +13,31 @@ public class main {
         PriorityQueue<Evenement> events = new PriorityQueue<>();
         DHT dht = new DHT(current_time,events);
 
+
+        ArrayList<Integer> currentLocs = new ArrayList<>();
         //Fill the dht with nodes
         //10 nodes
         for (int i = 0; i<3; i++){
             int id = i+3;
+            int randInt = rand.nextInt(100);
+            if (!currentLocs.contains(randInt)){
+                dht.newNode(id, randInt);
+                currentLocs.add(randInt);
+            }
+            else {
+                while (currentLocs.contains(randInt)){
+                    randInt = rand.nextInt(100);
+                }
+                dht.newNode(id, randInt);
+                currentLocs.add(randInt);
+            }
             dht.newNode(id, rand.nextInt(100));
         }
 
 
 
-        //Set up the neighbors of three nodes of beginning
-        dht.newNode(0,0);
+        //Set up the neighbors of three nodes
+        dht.newNode(0,25);
         dht.newNode(1,50);
         dht.newNode(2,100);
 
@@ -31,12 +46,12 @@ public class main {
         dht.getNodeById(0).setSupNeighbor(1, 50);
 
         //Node 12
-        dht.getNodeById(1).setInfNeighbor(0, 0);
+        dht.getNodeById(1).setInfNeighbor(0, 25);
         dht.getNodeById(1).setSupNeighbor(2, 100);
 
         //Node 13
         dht.getNodeById(2).setInfNeighbor(1, 50);
-        dht.getNodeById(2).setSupNeighbor(0, 0);
+        dht.getNodeById(2).setSupNeighbor(0, 25);
 
 
         //Node to insert
@@ -76,7 +91,16 @@ public class main {
 
         System.out.println("Final state:");
         for (Node node : dht.getNodes()){
-            System.out.println("Node " + node.getLoc() + " has for inf neighbor " + node.getInfNeighbor().get(1) + " and for sup neighbor " + node.getSupNeighbor().get(1));
+            System.out.println(node);
+
+            if (node.getSupNeighbor().size() == 0) {
+                System.out.println("Node " + node.getLoc() + " has no sup neighbor");
+            }else if (node.getInfNeighbor().size() == 0){
+                System.out.println("Node " + node.getLoc() + " has no inf neighbor");
+            }
+            else {
+                System.out.println("Node " + node.getLoc() + " has for inf neighbor " + node.getInfNeighbor().get(1) + " and for sup neighbor " + node.getSupNeighbor().get(1));
+            }
         }
 
 
