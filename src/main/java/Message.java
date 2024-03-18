@@ -46,4 +46,13 @@ public class Message {
     }
 
 
+    @Override
+    public String toString() {
+        return "Message{" +
+                "type='" + type + '\'' +
+                ", sousType='" + sousType + '\'' +
+                ", senders=" + senders +
+                ", data=" + data +
+                '}';
+    }
 }

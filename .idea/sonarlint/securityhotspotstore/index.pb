@@ -54,5 +54,3 @@ Q.idea/sonarlint/securityhotspotstore/d/4/d49052b5c99e4aed190a06219a866f7dc2d8b6
 Q.idea/sonarlint/securityhotspotstore/c/6/c6fb2101bd6452ebff8a5eecb227e7989729de9b,b\e\bec17855a8b6d2b98239a26953a77e9cd05fb0b8
 R
 "src/main/java/EventComparator.java,3\2\32c7c4d202db145eea0ce96602d7de1ff1a5865b
-S
-#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
