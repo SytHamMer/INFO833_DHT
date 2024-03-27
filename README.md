@@ -1,4 +1,4 @@
-# INFO833 – Projet DHT
+# INFO833 – Project DHT
 ## Github link:
 https://github.com/SytHamMer/INFO834-Cache-Redis
 
