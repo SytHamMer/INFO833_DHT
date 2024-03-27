@@ -8,7 +8,8 @@ public class Message {
     private ArrayList<Integer> senders;
 
     private HashMap<String,String> data;
-    //first one
+
+    // Message sent by node for the first time
     public Message(String type, String sousType, Integer idSender, HashMap<String,String> data) {
         this.type = type;
         this.sousType = sousType;
@@ -17,7 +18,7 @@ public class Message {
         this.data = data;
     }
 
-    //Not first one
+    // Message transmitted by a node (multiple senders)
     public Message(String type, String sousType, ArrayList<Integer> senders, HashMap<String,String> data) {
         this.type = type;
         this.sousType = sousType;
@@ -34,6 +35,7 @@ public class Message {
         return sousType;
     }
 
+    // Add a sender to the list of senders
     public void addSender(Integer idSender) {
         this.senders.add(idSender);
     }

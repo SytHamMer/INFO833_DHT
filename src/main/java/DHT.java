@@ -16,6 +16,7 @@ public class DHT {
         this.events = events;
     }
 
+    // Add new node to node list
     public void newNode(int id, int loc){
         Node node = new Node(id, loc,this);
         this.nodes.add(node);
@@ -25,6 +26,7 @@ public class DHT {
         return currentTime;
     }
 
+    // Return node corresponding to id given
     public Node getNodeById(int id){
         for (Node node : this.nodes){
             if (node.getId() == id){
@@ -42,6 +44,7 @@ public class DHT {
         this.currentTime = currentTime;
     }
 
+    // Add new event to event list
     public void addEvent(Evenement event){
         this.events.add(event);
     }

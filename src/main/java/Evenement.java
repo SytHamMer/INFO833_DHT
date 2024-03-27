@@ -11,9 +11,10 @@ public class Evenement implements Comparable<Evenement> {
         this.message = message;
         this.dht =dht;
     }
+
+    // Events are compared based on their execution time (placement in priority queue)
     @Override
     public int compareTo(Evenement other) {
-        // replace 'yourField' with the field you want to compare
         return Integer.compare(this.executeTime, other.executeTime);
     }
     public int getExecuteTime() {
@@ -28,6 +29,7 @@ public class Evenement implements Comparable<Evenement> {
         return message;
     }
 
+    // Execute event
     public void execute(){
         Node node = dht.getNodeById(idReceiver);
         node.receive(message);

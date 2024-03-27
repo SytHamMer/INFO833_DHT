@@ -6,6 +6,13 @@ import java.util.Random;
 public class main {
 
     public static void main(String[] args) {
+        //VARIABLES TO MODIFY FOR TESTING
+        int NBNODES = 100;
+        int MAXLOC = 100;
+        int NODE0LOC = 25;
+        int NODE1LOC = 50;
+        int NODE2LOC = 100;
+
         //SET UP
         int current_time = 0;
         int end_time = 1000000000;
@@ -13,79 +20,62 @@ public class main {
         PriorityQueue<Evenement> events = new PriorityQueue<>();
         DHT dht = new DHT(current_time,events);
 
-
+        // To keep track of the locations of the nodes and avoid duplicates
         ArrayList<Integer> currentLocs = new ArrayList<>();
 
 
-
-
-        //Set up the neighbors of three nodes
-        dht.newNode(0,25);
-        dht.newNode(1,50);
-        dht.newNode(2,100);
-        currentLocs.add(25);
-        currentLocs.add(50);
-        currentLocs.add(100);
+        //Set up the first three nodes
+        dht.newNode(0,NODE0LOC);
+        dht.newNode(1,NODE1LOC);
+        dht.newNode(2,NODE2LOC);
+        currentLocs.add(NODE0LOC);
+        currentLocs.add(NODE1LOC);
+        currentLocs.add(NODE2LOC);
+        // IsWaiting set to false because neighbors where added manually
         dht.getNodeById(0).setIsWaiting(false);
         dht.getNodeById(1).setIsWaiting(false);
         dht.getNodeById(2).setIsWaiting(false);
 
         //Node 0
-        dht.getNodeById(0).setInfNeighbor(2, 100);
-        dht.getNodeById(0).setSupNeighbor(1, 50);
+        dht.getNodeById(0).setInfNeighbor(2, NODE2LOC);
+        dht.getNodeById(0).setSupNeighbor(1, NODE1LOC);
 
         //Node 1
-        dht.getNodeById(1).setInfNeighbor(0, 25);
-        dht.getNodeById(1).setSupNeighbor(2, 100);
+        dht.getNodeById(1).setInfNeighbor(0, NODE0LOC);
+        dht.getNodeById(1).setSupNeighbor(2, NODE2LOC);
 
         //Node 2
-        dht.getNodeById(2).setInfNeighbor(1, 50);
-        dht.getNodeById(2).setSupNeighbor(0, 25);
+        dht.getNodeById(2).setInfNeighbor(1, NODE1LOC);
+        dht.getNodeById(2).setSupNeighbor(0, NODE0LOC);
 
 
 
         //Fill the dht with nodes
-        //10 nodes
-        for (int i = 0; i<97; i++){
+
+        for (int i = 0; i<(NBNODES-3); i++){
             int id = i+3;
-            int randInt = rand.nextInt(100);
-            if (!currentLocs.contains(randInt)){
-                dht.newNode(id, randInt);
-                currentLocs.add(randInt);
-            }
-            else {
-                while (currentLocs.contains(randInt)){
-                    randInt = rand.nextInt(100);
+            int randInt = rand.nextInt(MAXLOC);
+            if (currentLocs.contains(randInt)) {
+                // if the location is already taken, we generate a new one
+                while (currentLocs.contains(randInt)) {
+                    randInt = rand.nextInt(MAXLOC);
                 }
-                dht.newNode(id, randInt);
-                currentLocs.add(randInt);
-            }
+            } dht.newNode(id, randInt);
+            currentLocs.add(randInt);
         }
 
-        //Node to insert
-
-        System.out.println(dht.getNodes());
-
+        // Generate join request from all nodes without neighbors, to node 0 (id)
+        // Could be ameliorated by sending to a random node
         for (Node node : dht.getNodes()){
-            if (node.getSupNeighbor().size() == 0 && node.getInfNeighbor().size() == 0){
+            if (node.getSupNeighbor().isEmpty() && node.getInfNeighbor().isEmpty()){
                 node.send(new Message("join", "request", node.getId(), null),0);
             }
         }
 
-        /*
-        dht.newNode(0, 53);
-        //First events
-        dht.getEvents().add(new Evenement(0, 11, new Message("join", "request", 0, null), dht));
-        */
-
-
-
-
         //Main loop
-
         System.out.println("Evolution:");
         System.out.println("{'timestamp','locReceiver', 'message'}");
-        while (dht.getCurrentTime()<end_time && dht.getEvents().size()>0){
+        while (dht.getCurrentTime()<end_time && !dht.getEvents().isEmpty()){
             Evenement event = dht.getEvents().poll();
             event.execute();
             int time = dht.getCurrentTime();
@@ -97,17 +87,17 @@ public class main {
         }
 
 
-        //Check
+        //Check if all nodes have neighbors, else it means the algorithm failed
         boolean check = true;
 
         System.out.println("Final state:");
         for (Node node : dht.getNodes()){
             System.out.println(node);
 
-            if (node.getSupNeighbor().size() == 0) {
+            if (node.getSupNeighbor().isEmpty()) {
                 System.out.println("Node " + node.getLoc() + " has no sup neighbor");
                 check = false;
-            }else if (node.getInfNeighbor().size() == 0){
+            }else if (node.getInfNeighbor().isEmpty()){
                 System.out.println("Node " + node.getLoc() + " has no inf neighbor");
                 check = false;
             }
